@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinutha Anjanappa - Data Analyst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #0f0f23;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInScale 1s ease;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 4em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
+            }
+        }
+
+        .tagline {
+            font-size: 1.5em;
+            color: #aaa;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .cta-btn {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s ease;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .contact-link:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 2em;
+            color: #667eea;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            margin: 40px 0;
+            border-radius: 30px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.5s ease;
+        }
+
+        .content-section.visible h2::after {
+            width: 100%;
+        }
+
+        .about-text {
+            font-size: 1.2em;
+            color: #ccc;
+            line-height: 1.8;
+            max-width: 900px;
+        }
+
+        .experience-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #667eea;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.6em;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            font-size: 1.2em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .card-date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .card ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .card li {
+            color: #aaa;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            padding: 30px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 50px 50px 0;
+            border-color: transparent #667eea transparent transparent;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover::after {
+            opacity: 1;
+        }
+
+        .skill-card:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+        }
+
+        .skill-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .skill-card p {
+            color: #aaa;
+            line-height: 1.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-content {
+                padding: 40px 20px;
+            }
+
+            .content-section {
+                padding: 40px 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Vinutha Anjanappa</h1>
+                <p class="tagline">Transforming Data into Intelligence</p>
+                <div class="cta-buttons">
+                    <a href="#experience" class="cta-btn">View My Work</a>
+                    <a href="#contact" class="cta-btn">Get In Touch</a>
+                </div>
+                <div class="contact-links">
+                    <a href="tel:6823925691" class="contact-link">📞 Call</a>
+                    <a href="mailto:anjanappavinutha@gmail.com" class="contact-link">✉️ Email</a>
+                    <a href="https://linkedin.com" target="_blank" class="contact-link">💼 LinkedIn</a>
+                    <a href="https://github.com" target="_blank" class="contact-link">💻 Github</a>
+                    <a href="https://docs.google.com/document/d/1JOD9YdU8e3jrhFHVm7ri60uEpHaplRwjPcUyBfWrBtc/edit?tab=t.0" target="_blank" class="contact-link">📄 Resume</a>
+                </div>
+            </div>
+            <div class="scroll-indicator"></div>
+        </section>
+
+        <!-- About Section -->
+        <section class="content-section" id="about">
+            <h2>About Me</h2>
+            <p class="about-text">
+                Data Analyst with 4+ years of experience in Python, SQL, Spark, and cloud ETL pipelines, using AI-driven automation to accelerate insight generation and improve data workflows by 20–40%. I specialize in building scalable dashboards, statistical models, and anomaly-detection scripts that convert complex datasets (1.5M–10B+ records) into actionable business intelligence.
+            </p>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="content-section" id="experience">
+            <h2>Professional Journey</h2>
+            <div class="experience-grid">
+                <div class="card">
+                    <div class="card-title">Data Analyst - Senior Associate</div>
+                    <div class="card-subtitle">NTT DATA</div>
+                    <div class="card-date">August 2021 - July 2023 | Bengaluru, India</div>
+                    <ul>
+                        <li>Managed and analyzed 1.5M+ patient records for AVMED Health Insurance ensuring 100% HIPAA compliance</li>
+                        <li>Performed EDA, statistical profiling, feature engineering, and A/B analysis to identify trends and anomalies</li>
+                        <li>Automated 25+ recurring reports, reducing manual preparation time by 40%</li>
+                        <li>Optimized SQL queries reducing dashboard load times from 50s to 10s</li>
+                        <li>Developed Python-based anomaly detection scripts uncovering 12% hidden discrepancies</li>
+                        <li>Built 10+ enterprise-grade ETL pipelines processing 10B+ records</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Business Intelligence Analyst</div>
+                    <div class="card-subtitle">University of Texas at Arlington</div>
+                    <div class="card-date">August 2023 - May 2025</div>
+                    <ul>
+                        <li>Analyzed 10K+ equipment records to optimize resource allocation and reduce downtime by 25%</li>
+                        <li>Built Power BI dashboards improving reporting efficiency by 45%</li>
+                        <li>Cleaned and validated 6 semesters of datasets increasing data accuracy by 95%</li>
+                        <li>Developed KPI dashboards supporting budgeting and inventory planning decisions</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Machine Learning Intern</div>
+                    <div class="card-subtitle">Azure Skynet</div>
+                    <div class="card-date">May 2019 - August 2019 | Bengaluru, India</div>
+                    <ul>
+                        <li>Built real-time pricing models with Apache Kafka improving responsiveness by 40%</li>
+                        <li>Designed preprocessing pipelines reducing features from 625 to 330</li>
+                        <li>Validated datasets improving dashboard accuracy by 20%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="content-section" id="skills">
+            <h2>Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming & Data</h3>
+                    <p>Python (Pandas, NumPy, Scikit-learn), SQL (PostgreSQL, MySQL, SparkSQL)</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Visualization & BI</h3>
+                    <p>Power BI, Tableau, Qlik Sense, Excel (PivotTables, Macros), Plotly Dash</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Big Data / ETL</h3>
+                    <p>Apache Spark, Hadoop, AWS Glue, Azure Data Factory</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Cloud & Databases</h3>
+                    <p>Snowflake, BigQuery, Redshift, AWS (S3, Athena), Azure Synapse, Databricks</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Analytics & Statistics</h3>
+                    <p>KPI Modeling, A/B Testing, Regression, Clustering, Time Series, Feature Engineering</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="content-section" id="projects">
+            <h2>Featured Projects</h2>
+            <div class="experience-grid">
+                <div class="card">
+                    <div class="card-title">AI-Powered Financial Insights Dashboard</div>
+                    <div class="card-subtitle">Python, SQL, Pandas, AI Tools</div>
+                    <ul>
+                        <li>Built AI-driven dashboard tracking 15+ financial KPIs with interactive filters</li>
+                        <li>Implemented AI-generated insights detecting 20-30 monthly anomalies</li>
+                        <li>Reduced manual analysis by 40% and accelerated development by 30%</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Customer Shopping Behavior Analysis</div>
+                    <div class="card-subtitle">Python, Pandas, SQL, Power BI, Azure</div>
+                    <ul>
+                        <li>Analyzed 3,900+ transactions with schema normalization and 8+ engineered features</li>
+                        <li>Built 25+ SQL metrics using window functions and conditional logic</li>
+                        <li>Developed Power BI dashboard with 20+ DAX measures uncovering 5+ actionable insights</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">RAG Pipeline for Data Ingestion</div>
+                    <div class="card-subtitle">Python, OpenAI API, MongoDB Vector Search</div>
+                    <ul>
+                        <li>Built scalable pipeline processing 50k+ unstructured records</li>
+                        <li>Improved insight discovery accuracy by 45% using OpenAI embeddings</li>
+                        <li>Reduced ad-hoc analysis time by 35% with automated data refresh</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="content-section" id="education">
+            <h2>Education</h2>
+            <div class="experience-grid">
+                <div class="card">
+                    <div class="card-title">Master of Science in Information System</div>
+                    <div class="card-subtitle">University of Texas at Arlington</div>
+                    <div class="card-date">August 2023 - May 2025</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Bachelor of Engineering in Computer Science</div>
+                    <div class="card-subtitle">Visvesvaraya Technological University, India</div>
+                    <div class="card-date">June 2016 - September 2020</div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="contact">
+            <p>© 2024 Vinutha Anjanappa. Crafted with passion for data.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create animated particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
